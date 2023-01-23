@@ -1,9 +1,14 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { Home } from "../components/pages/home";
+import { ThemeProvider } from "styled-components";
+import { Login } from "../components/pages/login";
+import { GlobalStyle, theme } from "./global-styles";
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
-    <Home></Home>
+    <ThemeProvider theme={{ theme }}>
+      <Login />
+      <GlobalStyle />
+    </ThemeProvider>
   </React.StrictMode>
 );

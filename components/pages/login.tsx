@@ -1,5 +1,9 @@
-import React from "react";
+import { LoginForm } from "../molecules/login-form/login-form";
 
 export function Login() {
-  return <div>Login</div>;
+  return (
+    <div>
+      <LoginForm />
+    </div>
+  );
 }
