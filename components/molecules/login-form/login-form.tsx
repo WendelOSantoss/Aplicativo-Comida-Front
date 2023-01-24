@@ -1,14 +1,14 @@
-import React from "react";
+import { StyledForm, StyledLoginForm } from "./styles";
 
 export function LoginForm() {
   return (
-    <div>
-        <h2>Login</h2>
-      <form>
+    <StyledLoginForm>
+      <h2>Login</h2>
+      <StyledForm>
         <input />
         <input />
         <button>Login</button>
-      </form>
-    </div>
+      </StyledForm>
+    </StyledLoginForm>
   );
 }
