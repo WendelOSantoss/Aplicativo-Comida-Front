@@ -23,41 +23,48 @@ export function LoginForm() {
     };
     const userData = await api.login(loginPayload);
     setLoading(false);
-    if (userData.statusCode) {
+    if (!userData) {
       setError(true);
       return;
     }
     navigate("/usuario");
   }
-}
 
-return (
-  <>
-    {loading ? (
-      <Loading />
-    ) : (
-      <StyledLoginForm>
-        <h2>Login</h2>
-        <StyledForm onSubmit={handleSubmit} error={error}>
-          <input placeholder="E-mail" name="email" required />
-          <div>
-            <input
-              placeholder="Senha"
-              type={showPassword ? "text" : "password"}
-              name="password"
-              required
-            />
-            <button type="button" onClick={handleShowPassword}>
-              {showPassword ? (
-                <BsEyeSlashFill size={25} />
-              ) : (
-                <BsEyeFill size={25} />
-              )}
-            </button>
-          </div>
-          <button type="submit">Login</button>
-        </StyledForm>
-      </StyledLoginForm>
-    )}
-  </>
-);
+  return (
+    <>
+      {loading ? (
+        <Loading />
+      ) : (
+        <StyledLoginForm>
+          <h2>Login</h2>
+          <StyledForm onSubmit={handleSubmit} error={error}>
+            <input placeholder="E-mail" name="email" required />
+            <div>
+              <input
+                placeholder="Senha"
+                type={showPassword ? "text" : "password"}
+                name="password"
+                required
+              />
+              <button type="button" onClick={handleShowPassword}>
+                {showPassword ? (
+                  <BsEyeSlashFill size={25} />
+                ) : (
+                  <BsEyeFill size={25} />
+                )}
+              </button>
+            </div>
+            <button type="submit">Login</button>
+          </StyledForm>
+          <button
+            onClick={() => {
+              navigate("/registro");
+            }}
+          >
+            Registre-se
+          </button>
+        </StyledLoginForm>
+      )}
+    </>
+  );
+}

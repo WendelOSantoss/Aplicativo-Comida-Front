@@ -1,16 +1,29 @@
+import axios from "axios";
 import { LoginRequest } from "../../types/requests";
+
+axios.defaults.baseURL = "http://localhost:3000";
+axios.defaults.headers.post["Content-Type"] = "application/json";
+
+axios.interceptors.request.use(
+  function (config) {
+    return config;
+  },
+  function (error) {
+    return Promise.reject(error);
+  }
+);
 
 export const api = {
   login: async ({ email, password }: LoginRequest) => {
-    setInterval(async () => {
-      const response = await fetch("https://localhost:3000/auth/login/email", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email, password }),
+    try {
+      const response = await axios.post("/auth/login/email", {
+        email,
+        password,
       });
-      return await response.json();
-    }, 1000);
+      localStorage.setItem("token", response.data.token);
+      return response.data;
+    } catch (err) {
+      alert(err);
+    }
   },
 };
