@@ -3,7 +3,7 @@ import { StyledForm, StyledLoginForm } from "./styles";
 import { BsEyeFill, BsEyeSlashFill } from "react-icons/bs";
 import { api } from "../../../src/utils/api/api";
 import { useNavigate } from "react-router-dom";
-import {Loading} from "../loading/loading"
+import { Loading } from "../loading/loading";
 
 export function LoginForm() {
   const [showPassword, setShowPassword] = useState<boolean>(false);
@@ -16,25 +16,29 @@ export function LoginForm() {
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setLoading(true);
+
     const loginPayload = {
       email: e.currentTarget.email.value,
       password: e.currentTarget.password.value,
     };
     const userData = await api.login(loginPayload);
     setLoading(false);
-    if (!userData) {
+    if (userData.statusCode) {
       setError(true);
       return;
     }
     navigate("/usuario");
   }
+}
 
-  return (
-    <>
-    {loading? <Loading/>}
+return (
+  <>
+    {loading ? (
+      <Loading />
+    ) : (
       <StyledLoginForm>
         <h2>Login</h2>
-        <StyledForm onSubmit={handleSubmit}>
+        <StyledForm onSubmit={handleSubmit} error={error}>
           <input placeholder="E-mail" name="email" required />
           <div>
             <input
@@ -43,7 +47,7 @@ export function LoginForm() {
               name="password"
               required
             />
-            <button onClick={handleShowPassword}>
+            <button type="button" onClick={handleShowPassword}>
               {showPassword ? (
                 <BsEyeSlashFill size={25} />
               ) : (
@@ -54,6 +58,6 @@ export function LoginForm() {
           <button type="submit">Login</button>
         </StyledForm>
       </StyledLoginForm>
-    </>
-  );
-}
+    )}
+  </>
+);

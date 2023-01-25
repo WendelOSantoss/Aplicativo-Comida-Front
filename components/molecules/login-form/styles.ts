@@ -15,7 +15,11 @@ export const StyledLoginForm = styled.div`
   }
 `;
 
-export const StyledForm = styled.form`
+export type StyledFormProps = {
+  error: boolean;
+};
+
+export const StyledForm = styled.form<StyledFormProps>`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -28,7 +32,7 @@ export const StyledForm = styled.form`
     width: 90%;
     margin: 5px;
     border-radius: 5px;
-    border: none;
+    border: ${(props) => (props.error ? "solid 2px red" : "none")};
     height: 35px;
     background: ${(props) => props.theme.lightTheme.fg};
     font-size: 1.2rem;
@@ -55,7 +59,7 @@ export const StyledForm = styled.form`
 
     button {
       display: flex;
-      border: none;
+      border: ${(props) => (props.error ? "solid 2px red" : "none")};
       border-left: none;
       margin: 0;
       padding: 0 5px;

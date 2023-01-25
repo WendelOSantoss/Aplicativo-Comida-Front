@@ -12,7 +12,7 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Login />} />
-          <Route path="/usuario" element={<User />} />
+          <Route path="/register" element={<User />} />
         </Routes>
       </BrowserRouter>
       <GlobalStyle />
