@@ -1,0 +1,3 @@
+interface CardProps {
+  profiles: Profiles;
+}
