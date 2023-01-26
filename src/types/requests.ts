@@ -3,11 +3,10 @@ export type LoginRequest = {
   password: string;
 };
 
-
-export type LoginResponse{
-token: string;
-user: User;
-}
+export type LoginResponse = {
+  token: string;
+  user: User;
+};
 
 export type User = {
   name: string;
@@ -16,4 +15,31 @@ export type User = {
   cpf: string;
 };
 
+export type LoginProfile = {
+  id: string;
+  name: string;
+  image: string;
+  type: string;
+  adress: string;
+  restaurantId?: string[];
+  consumerId?: string[];
+};
 
+export type ProfileCreate = {
+  name: string;
+  image: string;
+  type: string;
+  adress: string;
+  restaurantId?: string[];
+  consumerId?: string[];
+};
+
+export type ProfileUpdate = {
+  id: string;
+  name: string;
+  image: string;
+  type: string;
+  adress: string;
+  restaurantId?: string[];
+  consumerId?: string[];
+};

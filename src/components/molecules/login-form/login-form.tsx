@@ -1,9 +1,9 @@
 import { FormEvent, useState } from "react";
 import { StyledForm, StyledLoginForm } from "./styles";
 import { BsEyeFill, BsEyeSlashFill } from "react-icons/bs";
-import { api } from "../../../src/utils/api/api";
 import { useNavigate } from "react-router-dom";
 import { Loading } from "../loading/loading";
+import { api } from "../../../utils/api/api";
 
 export function LoginForm() {
   const [showPassword, setShowPassword] = useState<boolean>(false);

@@ -1,10 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { ThemeProvider } from "styled-components";
-import { Login } from "../components/pages/login/login";
 import { GlobalStyle, theme } from "./global-styles";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { User } from "../components/pages/user/user";
+import { Home } from "./components/pages/home";
+import { User } from "./components/pages/user/user";
+import { Login } from "./components/pages/login/login";
+import { CreateProf } from "./components/pages/CreateProfile/createprofile";
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
@@ -16,7 +18,7 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
           <Route path="/home" element={<Home />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/create" element={<CreateProf />} />
-          <Route path="/profile/update/:id" element={<UpdateProf />} />
+          <Route path="/profile/update/:id" element={<CreateProf />} />
         </Routes>
       </BrowserRouter>
       <GlobalStyle />
