@@ -3,15 +3,17 @@ import ReactDOM from "react-dom/client";
 import { ThemeProvider } from "styled-components";
 import { GlobalStyle, theme } from "./global-styles";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { Home } from "./components/pages/home";
+import { Home } from "./components/pages/home/home";
 import { User } from "./components/pages/user/user";
 import { Login } from "./components/pages/login/login";
 import { CreateProf } from "./components/pages/CreateProfile/createprofile";
+import { ChakraProvider } from "@chakra-ui/react";
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
-    <ThemeProvider theme={theme}>
+    <ChakraProvider theme={theme}>
       <BrowserRouter>
+      <header/>
         <Routes>
           <Route path="/" element={<Login />} />
           <Route path="/register" element={<User />} />
@@ -22,6 +24,6 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
         </Routes>
       </BrowserRouter>
       <GlobalStyle />
-    </ThemeProvider>
+    </ChakraProvider>
   </React.StrictMode>
 );
