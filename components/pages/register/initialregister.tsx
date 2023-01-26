@@ -1,3 +1,4 @@
+import { Flex, Stack } from "@chakra-ui/react";
 import { addPointerInfo } from "framer-motion";
 import { FormEvent, useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -27,4 +28,10 @@ return(
 )
 <Flex
 flexDirection="column"
-height
+height = "100vh"
+justifyContent="center"
+alignItems="center"
+>
+
+
+    

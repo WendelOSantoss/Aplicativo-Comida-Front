@@ -13,6 +13,10 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
         <Routes>
           <Route path="/" element={<Login />} />
           <Route path="/register" element={<User />} />
+          <Route path="/home" element={<Home />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/create" element={<CreateProf />} />
+          <Route path="/profile/update/:id" element={<UpdateProf />} />
         </Routes>
       </BrowserRouter>
       <GlobalStyle />

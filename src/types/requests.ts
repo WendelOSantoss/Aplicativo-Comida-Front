@@ -14,7 +14,6 @@ export type User = {
   email: string;
   password: string;
   cpf: string;
-  role: string;
 };
 
 
