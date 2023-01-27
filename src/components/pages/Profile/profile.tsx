@@ -3,14 +3,14 @@ import { useContext, useEffect, useState } from "react";
 import { LoginProfile } from "../../../types/requests";
 import { api } from "../../../utils/api/api";
 import { CardProfile } from "../../card/profilecard";
-
 import { useDebounce } from "usehooks-ts";
+import ContextSearch from "../../../context/contextsearch";
 
 export function Profile() {
   const [profiles, setProfiles] = useState<LoginProfile[]>([]);
   const [loading, setLoading] = useState(false);
   const [control, setControl] = useState<boolean>(false);
-  const { search } = useContext(SearchContext);
+  const { search } = useContext(ContextSearch);
   const debouncedSearch = useDebounce(search, 1000);
   const [filteredProfiles, setFilteredProfiles] = useState<LoginProfile[]>([]);
 

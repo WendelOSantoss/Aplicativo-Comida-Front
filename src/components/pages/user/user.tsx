@@ -25,7 +25,6 @@ export function User() {
     event.preventDefault();
 
     const newUser = new FormData(event.currentTarget);
-
     const userData = await api.CreateUser(newUser);
 
     if (userData) {

@@ -21,13 +21,15 @@ export function LoginForm() {
       email: e.currentTarget.email.value,
       password: e.currentTarget.password.value,
     };
+    console.log(loginPayload);
     const userData = await api.login(loginPayload);
+    console.log(userData);
     setLoading(false);
     if (!userData) {
       setError(true);
       return;
     }
-    navigate("/usuario");
+    navigate("/home");
   }
 
   return (
@@ -58,7 +60,7 @@ export function LoginForm() {
           </StyledForm>
           <button
             onClick={() => {
-              navigate("/registro");
+              navigate("/register");
             }}
           >
             Registre-se

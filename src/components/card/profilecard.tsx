@@ -1,15 +1,13 @@
 import {
-  Avatar,
-  Box,
   Button,
   ButtonGroup,
   Card,
   CardBody,
   CardFooter,
-  Divider,
-  Flex,
   Heading,
+  Stack,
   Text,
+  Image,
 } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
@@ -28,7 +26,7 @@ export function CardProfile({ profiles, updatePage }: CardProps) {
   async function CardDelete() {
     Swal.fire({
       title: "Aviso!",
-      text: "Deseja mesmo deletar seu perfil?",
+      text: "Quer deletar seu perfil?",
       icon: "error",
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
@@ -46,58 +44,58 @@ export function CardProfile({ profiles, updatePage }: CardProps) {
   }
 
   return (
-    <Card maxWidth="small" margin="10px" width="100%">
-      <CardBody>
-        <Flex
-          flex="1"
-          gap="4"
-          alignItems="center"
-          flexWrap="wrap"
-          flexDirection="column"
-        >
-          <Avatar name={profiles.name} src={profiles.image} />
-          <Box>
-            <Heading size="sm" display="flex" justifyContent="center">
-              {profiles.name}
-            </Heading>
-            <Text display="flex" justifyContent="center" as="b">
-              Restaurante: {profiles.type}
-            </Text>
-          </Box>
-        </Flex>
-      </CardBody>
-      <Divider />
-      <CardFooter display="flex" justifyContent="center">
-        <ButtonGroup spacing="2">
-          <Button
-            backgroundColor="rgba(66, 153, 225, 0.6)"
-            variant="solid"
-            colorScheme="red"
-            onClick={CardDelete}
-          >
-            Remover
-          </Button>
-          <Button
-            variant="ghost"
-            colorScheme="blue"
-            onClick={() => {
-              navigate("/profile/update/" + profiles.id);
-            }}
-          >
-            Editar
-          </Button>
-          <Button
-            variant="solid"
-            colorScheme="blue"
-            backgroundColor="rgba(66, 153, 225, 0.6)"
-            onClick={() => {
-              navigate("/menu/find/" + profiles.id);
-            }}
-          >
-            Menu
-          </Button>
-        </ButtonGroup>
-      </CardFooter>
+    <Card
+      direction={{ base: "column", sm: "row" }}
+      overflow="hidden"
+      variant="outline"
+    >
+      <Image
+        objectFit="cover"
+        maxW={{ base: "100%", sm: "200px" }}
+        alt={profiles.name}
+        src={profiles.image}
+      />
+
+      <Stack>
+        <CardBody>
+          <Heading size="md">Restaurante: {profiles.name}</Heading>
+
+          <Text py="2">Tipo: {profiles.type}</Text>
+          <Text py="2">Endereço: {profiles.adress}</Text>
+        </CardBody>
+
+        <CardFooter>
+          <ButtonGroup spacing="2">
+            <Button
+              backgroundColor="rgba(66, 153, 225, 0.6)"
+              variant="solid"
+              colorScheme="red"
+              onClick={CardDelete}
+            >
+              Remover
+            </Button>
+            <Button
+              variant="ghost"
+              colorScheme="blue"
+              onClick={() => {
+                navigate("/profile/update/" + profiles.id);
+              }}
+            >
+              Editar
+            </Button>
+            <Button
+              variant="solid"
+              colorScheme="blue"
+              backgroundColor="rgba(66, 153, 225, 0.6)"
+              onClick={() => {
+                navigate("/menu/find/" + profiles.id);
+              }}
+            >
+              Menu
+            </Button>
+          </ButtonGroup>
+        </CardFooter>
+      </Stack>
     </Card>
   );
 }

@@ -8,7 +8,7 @@ import {
   Stack,
   Textarea,
 } from "@chakra-ui/react";
-import { FormEvent, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { ProfileUpdate } from "../../../types/requests";
 import { api } from "../../../utils/api/api";
@@ -111,7 +111,7 @@ export function CreateProf() {
                   <Input
                     defaultValue={profiles?.type}
                     type="text"
-                    name="Type"
+                    name="type"
                     isRequired
                     placeholder="Tipo"
                   />

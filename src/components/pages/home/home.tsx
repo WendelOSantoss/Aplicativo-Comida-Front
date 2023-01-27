@@ -1,13 +1,19 @@
 import { Card, CircularProgress } from "@chakra-ui/react";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { useDebounce } from "usehooks-ts";
+import ContextSearch from "../../../context/contextsearch";
+import { LoginProfile } from "../../../types/requests";
 import { api } from "../../../utils/api/api";
 import { CardHome } from "../../card/homepagecard";
+import { Top } from "../../top/top";
 
 export function Home() {
-  const [profiles, setProfiles] = useState<Profiles[]>([]);
+  const [profiles, setProfiles] = useState<LoginProfile[]>([]);
   const [loading, setLoading] = useState(false);
   const [control, setControl] = useState<boolean>(false);
-  const [filteredProfiles, setFilteredProfiles] = useState<Profiles[]>([]);
+  const [filteredProfiles, setFilteredProfiles] = useState<LoginProfile[]>([]);
+  const { search } = useContext(ContextSearch);
+  const debouncedSearch = useDebounce(search, 1000);
 
   async function getTeamsInfo() {
     setLoading(true);
@@ -33,7 +39,7 @@ export function Home() {
     } else {
       setFilteredProfiles([]);
     }
-  });
+  }, [debouncedSearch]);
 
   const hasFilter = filteredProfiles.length === 0;
 
