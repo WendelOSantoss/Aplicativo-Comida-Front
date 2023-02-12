@@ -6,6 +6,8 @@ import {
   User,
   ProfileUpdate,
   LoginResponse,
+  Menus,
+  MenusRequest,
 } from "../../types/requests";
 
 axios.defaults.baseURL = "https://projetomod5-production.up.railway.app/";
@@ -136,6 +138,54 @@ export const api = {
       return updatedProfile.data;
     } catch (err: any) {
       handleError("Erro ao atualizar o perfil", err.response.data.message[0]);
+    }
+  },
+
+  getMenuById: async (menuId: string): Promise<Menus | undefined> => {
+    try {
+      const menu = await axios.get("/menu/find/" + menuId, {
+        headers: { Authorization: "Bearer" + localStorage.getItem("token") },
+      });
+      return menu.data;
+    } catch (err) {
+      handleError(
+        "Cardápio não encontrado",
+        "Procurar por outro id, pois com este não foi encontrado"
+      );
+    }
+  },
+
+  createMenu: async (menu: MenusRequest): Promise<Menus | undefined> => {
+    try {
+      const newMenu = await axios.post("/menu/create", menu, {
+        headers: { Authorization: "Bearer " + localStorage.getItem("token") },
+      });
+      return newMenu.data;
+    } catch (err: any) {
+      console.log(err);
+      handleError("Erro ao criar o cardápio", err.response.data.message[0]);
+    }
+  },
+
+  updateMenu: async (menu: Menus): Promise<Menus | undefined> => {
+    try {
+      const updatedMenu = await axios.patch("/training/update", menu, {
+        headers: { Authorization: "Bearer " + localStorage.getItem("token") },
+      });
+      return updatedMenu.data;
+    } catch (err: any) {
+      handleError("Erro ao atualizar o cardápio", err.response.data.message[0]);
+    }
+  },
+
+  getAllMenu: async (): Promise<Menus[] | undefined> => {
+    try {
+      const menus = await axios.get("/menu", {
+        headers: { Authorization: "Bearer" + localStorage.getItem("token") },
+      });
+      return menus.data;
+    } catch (err: any) {
+      handleError("Erro", "Tentar novamente");
     }
   },
 };

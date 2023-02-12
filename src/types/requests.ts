@@ -43,3 +43,18 @@ export type ProfileUpdate = {
   restaurantId?: string[];
   consumerId?: string[];
 };
+
+export type Menus = {
+  id: string;
+  profileId?: string;
+  foodname: string;
+  accompaniment: string;
+  price: GLfloat;
+};
+
+export type MenusRequest = {
+  foodname: string;
+  accompaniment: string;
+  price: GLfloat;
+  profileId?: string;
+};
