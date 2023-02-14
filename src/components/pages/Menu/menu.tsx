@@ -33,7 +33,7 @@ export function Menu() {
   useEffect(() => {
     if (search !== "") {
       const getFilteredMenus = menus.filter((menu) =>
-        menu.accompaniment.toUpperCase().includes(search.toUpperCase())
+        menu.accompaniment.toString().includes(search.toUpperCase())
       );
       setFilteredMenus(getFilteredMenus);
     } else {
@@ -67,10 +67,22 @@ export function Menu() {
         >
           {hasFilter
             ? menus.map((menus) => {
-                return <CardMenu menu={menus} key={menus.id} />;
+                return (
+                  <CardMenu
+                    menu={menus}
+                    key={menus.id}
+                    updatePage={MenuUpdate}
+                  />
+                );
               })
             : filteredMenus.map((menus) => {
-                return <CardMenu menu={menus} key={menus.id} />;
+                return (
+                  <CardMenu
+                    menu={menus}
+                    key={menus.id}
+                    updatePage={MenuUpdate}
+                  />
+                );
               })}
         </Card>
       )}

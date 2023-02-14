@@ -6,11 +6,11 @@ import {
   Input,
   Text,
   Stack,
-  Textarea,
+  ButtonGroup,
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
-import { Menus } from "../../../types/requests";
+import { LoginProfile, Menus } from "../../../types/requests";
 import { api } from "../../../utils/api/api";
 
 export function CreateMenu() {
@@ -39,15 +39,21 @@ export function CreateMenu() {
 
     const newMenu = {
       profileId: id,
-      foodName: formData.get("foodname")?.toString() || "",
+      foodName: formData.get("foodName")?.toString() || "",
       accompaniment: [formData.get("accompaniment")?.toString() || ""],
-      price: formData.get("price")?.toString() || "",
+      price: parseFloat(formData.get("price")?.toString() || ""),
     };
 
-    const CreateMenu = await api.createMenu(newMenu);
-    setLoading(false);
+    let menuResponse;
+    if (id) {
+      const menuToUpdate = { ...newMenu, id: id };
+      menuResponse = await api.updateMenu(menuToUpdate);
+    } else {
+      menuResponse = await api.createMenu(newMenu);
+      setLoading(false);
+    }
 
-    if (CreateMenu) {
+    if (menuResponse) {
       navigate("/profile");
     }
   }
@@ -78,14 +84,14 @@ export function CreateMenu() {
                   justifyContent="center"
                   fontSize="2xl"
                 >
-                  Criar novo menu
+                  {id ? "Atualizar menu" : "Criar novo menu"}
                 </Text>
                 <Box>
                   <FormLabel>Alimento:</FormLabel>
                   <Input
-                    defaultValue={menus?.foodname}
+                    defaultValue={menus?.foodName}
                     type="text"
-                    name="foodname"
+                    name="foodName"
                     isRequired
                     placeholder="Alimento"
                   />
@@ -111,16 +117,50 @@ export function CreateMenu() {
                   />
                 </Box>
                 <Box display="flex" justifyContent="center" alignItems="center">
-                  <Button
-                    borderRadius={20}
-                    type="submit"
-                    variant="solid"
-                    colorScheme="blue"
-                    color="black"
-                    backgroundColor="rgba(66, 153, 225, 0.6)"
-                  >
-                    Criar
-                  </Button>
+                  {id ? (
+                    <Box
+                      display="flex"
+                      justifyContent="center"
+                      alignItems="center"
+                    >
+                      <ButtonGroup
+                        display="flex"
+                        spacing="20"
+                        justifyContent="center"
+                      >
+                        <Button
+                          w="20%"
+                          rounded="md"
+                          type="submit"
+                          color="black"
+                          backgroundColor="rgba(66, 153, 225, 0.6)"
+                        >
+                          Editar
+                        </Button>
+                      </ButtonGroup>
+                    </Box>
+                  ) : (
+                    <Box
+                      display="flex"
+                      justifyContent="center"
+                      alignItems="center"
+                    >
+                      <ButtonGroup
+                        display="flex"
+                        spacing="20"
+                        justifyContent="center"
+                      >
+                        <Button
+                          type="submit"
+                          rounded="md"
+                          color="black"
+                          backgroundColor="rgba(66, 153, 225, 0.6)"
+                        >
+                          Criar
+                        </Button>
+                      </ButtonGroup>
+                    </Box>
+                  )}
                 </Box>
               </Stack>
             </form>

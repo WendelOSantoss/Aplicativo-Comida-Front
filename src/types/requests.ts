@@ -16,11 +16,11 @@ export type User = {
 };
 
 export type LoginProfile = {
-  id: string;
-  name: string;
-  image: string;
-  type: string;
-  adress: string;
+  id?: string;
+  name?: string;
+  image?: string;
+  type?: string;
+  adress?: string;
   restaurantId?: string[];
   consumerId?: string[];
 };
@@ -47,14 +47,14 @@ export type ProfileUpdate = {
 export type Menus = {
   id: string;
   profileId?: string;
-  foodname: string;
-  accompaniment: string;
+  foodName: string;
+  accompaniment: string[];
   price: GLfloat;
 };
 
 export type MenusRequest = {
-  foodname: string;
-  accompaniment: string;
+  foodName: string;
+  accompaniment: string[];
   price: GLfloat;
   profileId?: string;
 };

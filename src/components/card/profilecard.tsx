@@ -95,6 +95,18 @@ export function CardProfile({ profiles, updatePage }: CardProps) {
             </Button>
           </ButtonGroup>
         </CardFooter>
+        <Button
+          variant="solid"
+          colorScheme="blue"
+          backgroundColor="rgba(66, 153, 225, 0.6)"
+          onClick={() => {
+            navigate("/menu/create/" + profiles.id, {
+              state: { isCreated: true },
+            });
+          }}
+        >
+          Criar Menu
+        </Button>
       </Stack>
     </Card>
   );

@@ -9,6 +9,8 @@ import { ChakraProvider, extendTheme } from "@chakra-ui/react";
 import { Profile } from "./components/pages/Profile/profile";
 import GlobalContext from "./context";
 import { Header } from "./components/header/header";
+import { Menu } from "./components/pages/Menu/menu";
+import { CreateMenu } from "./components/pages/CreateMenu/createmenu";
 
 const theme = extendTheme({
   styles: {
@@ -33,6 +35,9 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
             <Route path="/profile" element={<Profile />} />
             <Route path="/create" element={<CreateProf />} />
             <Route path="/profile/update/:id" element={<CreateProf />} />
+            <Route path="/menu/create/:id" element={<CreateMenu />} />
+            <Route path="/menu/find/:id" element={<Menu />} />
+            <Route path="/menu/update/:id" element={<CreateMenu />} />
           </Routes>
         </BrowserRouter>
       </ChakraProvider>

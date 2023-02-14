@@ -169,7 +169,7 @@ export const api = {
 
   updateMenu: async (menu: Menus): Promise<Menus | undefined> => {
     try {
-      const updatedMenu = await axios.patch("/training/update", menu, {
+      const updatedMenu = await axios.patch("/menu/update", menu, {
         headers: { Authorization: "Bearer " + localStorage.getItem("token") },
       });
       return updatedMenu.data;
@@ -186,6 +186,21 @@ export const api = {
       return menus.data;
     } catch (err: any) {
       handleError("Erro", "Tentar novamente");
+    }
+  },
+  MenuDelete: async (menuId: string): Promise<boolean | undefined> => {
+    try {
+      const isDeleted = await axios.delete("/menu/delete" + menuId, {
+        headers: { Authorization: "Bearer " + localStorage.getItem("token") },
+      });
+      if (isDeleted.status === 200) {
+        return true;
+      }
+    } catch (err: any) {
+      handleError(
+        "Erro ao deletar menu",
+        "Ocorreu um erro ao deletar, por favor tente novamente mais tarde!"
+      );
     }
   },
 };
