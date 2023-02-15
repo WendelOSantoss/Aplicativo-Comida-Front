@@ -46,7 +46,7 @@ export function CardMenu({ menu, updatePage }: CardProps) {
         <Box
           maxW={"445px"}
           w={"full"}
-          bg="white"
+          bg="#696969"
           boxShadow={"2xl"}
           rounded={"md"}
           p={6}
@@ -64,7 +64,7 @@ export function CardMenu({ menu, updatePage }: CardProps) {
               <Button
                 w="full"
                 bg="#151f21"
-                color="white"
+                color="black"
                 rounded="md"
                 onClick={() => {
                   navigate("/menu/update/" + menu.id);

@@ -75,7 +75,7 @@ export function CreateMenu() {
               <Stack
                 spacing={4}
                 p="1rem"
-                backgroundColor="whiteAlpha.900"
+                backgroundColor=" rgba(34, 28, 100)"
                 boxShadow="md"
                 borderRadius={14}
               >

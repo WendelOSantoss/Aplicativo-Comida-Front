@@ -47,7 +47,7 @@ export function User() {
               spacing={4}
               p="1rem"
               backgroundColor="whiteAlpha.900"
-              boxShadow="md"
+              boxShadow="xl"
               borderRadius={14}
             >
               <FormLabel htmlFor="name">Nome:</FormLabel>

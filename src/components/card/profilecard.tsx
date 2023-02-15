@@ -8,6 +8,7 @@ import {
   Stack,
   Text,
   Image,
+  Flex,
 } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
@@ -65,9 +66,9 @@ export function CardProfile({ profiles, updatePage }: CardProps) {
         </CardBody>
 
         <CardFooter>
-          <ButtonGroup spacing="2">
+          <ButtonGroup spacing="5">
             <Button
-              backgroundColor="rgba(66, 153, 225, 0.6)"
+              backgroundColor=" rgba(34, 28, 100)" 
               variant="solid"
               colorScheme="red"
               onClick={CardDelete}
@@ -76,7 +77,7 @@ export function CardProfile({ profiles, updatePage }: CardProps) {
             </Button>
             <Button
               variant="ghost"
-              colorScheme="blue"
+              colorScheme="green"
               onClick={() => {
                 navigate("/profile/update/" + profiles.id);
               }}
@@ -85,8 +86,8 @@ export function CardProfile({ profiles, updatePage }: CardProps) {
             </Button>
             <Button
               variant="solid"
-              colorScheme="blue"
-              backgroundColor="rgba(66, 153, 225, 0.6)"
+              colorScheme="linkedin"
+              backgroundColor="rgba(34, 28, 100)"
               onClick={() => {
                 navigate("/menu/find/" + profiles.id);
               }}
@@ -97,8 +98,8 @@ export function CardProfile({ profiles, updatePage }: CardProps) {
         </CardFooter>
         <Button
           variant="solid"
-          colorScheme="blue"
-          backgroundColor="rgba(66, 153, 225, 0.6)"
+          colorScheme="green"
+          backgroundColor="rgba(34, 28, 100)"
           onClick={() => {
             navigate("/menu/create/" + profiles.id, {
               state: { isCreated: true },

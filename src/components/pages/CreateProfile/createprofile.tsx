@@ -137,7 +137,7 @@ export function CreateProf() {
                       type="submit"
                       variant="solid"
                       colorScheme="blue"
-                      color="black"
+                      color="white"
                       backgroundColor="rgba(66, 153, 225, 0.6)"
                     >
                       Editar
