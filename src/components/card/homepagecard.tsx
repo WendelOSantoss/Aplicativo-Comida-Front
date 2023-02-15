@@ -44,7 +44,7 @@ export function CardHome({ profiles, updatePage }: CardProps) {
           <Button
             variant="solid"
             colorScheme="blue"
-            backgroundColor="rgba(66, 153, 225, 0.6)"
+            backgroundColor="rgba(0, 0, 225, 0.6)"
             onClick={() => {
               navigate("/menu/find/" + profiles.id);
             }}

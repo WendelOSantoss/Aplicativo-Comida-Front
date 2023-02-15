@@ -32,7 +32,7 @@ export const HeaderButtons = styled.section`
     margin: 5px;
     color: black;
     :hover {
-      background-color: rgba(34, 28, 100);
+      background-color: rgba(0, 0, 225, 0.6);
     }
   }
 `;

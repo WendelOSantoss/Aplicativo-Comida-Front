@@ -34,7 +34,7 @@ export const StyledForm = styled.form<StyledFormProps>`
     border-radius: 5px;
     border: solid 2px red
     height: 35px;
-    background: 
+    background: rgba(0, 0, 225, 0.6)
     font-size: 1.2rem;
   }
 
@@ -67,7 +67,7 @@ export const StyledForm = styled.form<StyledFormProps>`
       border-radius: 0 5px 5px 0;
       height: 35px;
       align-items: center;
-      background: 
+  
     }
   }
 

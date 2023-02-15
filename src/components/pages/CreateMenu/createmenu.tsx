@@ -16,7 +16,7 @@ import { api } from "../../../utils/api/api";
 export function CreateMenu() {
   const [menus, setMenus] = useState<Menus>();
   const { id } = useParams();
-  console.log(id);
+
   const [loading, setLoading] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
@@ -75,7 +75,7 @@ export function CreateMenu() {
               <Stack
                 spacing={4}
                 p="1rem"
-                backgroundColor=" rgba(34, 28, 100)"
+                backgroundColor=" rgba(66, 153, 225, 0.6)"
                 boxShadow="md"
                 borderRadius={14}
               >
