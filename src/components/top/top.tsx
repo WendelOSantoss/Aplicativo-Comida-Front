@@ -42,7 +42,7 @@ export function Top() {
           color="black"
           colorScheme="rgba (34, 28, 100)"
           type="submit"
-          bg="rgba(0, 0, 0, 0.6)"
+          bg="rgba(0, 0, 225, 0.6)"
           onClick={() => {
             navigate("/create");
           }}
