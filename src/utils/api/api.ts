@@ -169,7 +169,7 @@ export const api = {
 
   updateMenu: async (menu: Menus): Promise<Menus | undefined> => {
     try {
-      const updatedMenu = await axios.patch("/menu/update", menu, {
+      const updatedMenu = await axios.patch("/menu/update/" + menu.id, menu, {
         headers: { Authorization: "Bearer " + localStorage.getItem("token") },
       });
       return updatedMenu.data;
@@ -190,7 +190,7 @@ export const api = {
   },
   MenuDelete: async (menuId: string): Promise<boolean | undefined> => {
     try {
-      const isDeleted = await axios.delete("/menu/delete" + menuId, {
+      const isDeleted = await axios.delete("/menu/delete/" + menuId, {
         headers: { Authorization: "Bearer " + localStorage.getItem("token") },
       });
       if (isDeleted.status === 200) {

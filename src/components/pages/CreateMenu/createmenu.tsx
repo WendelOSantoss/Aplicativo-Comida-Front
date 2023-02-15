@@ -16,12 +16,13 @@ import { api } from "../../../utils/api/api";
 export function CreateMenu() {
   const [menus, setMenus] = useState<Menus>();
   const { id } = useParams();
+  console.log(id);
   const [loading, setLoading] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
-
+  const isCreated = location.state?.isCreated;
   useEffect(() => {
-    if (location.state.isCreated) return;
+    if (isCreated) return;
     getMenuById();
   }, []);
 
@@ -38,15 +39,16 @@ export function CreateMenu() {
     const formData = new FormData(event.currentTarget);
 
     const newMenu = {
-      profileId: id,
+      profileId: isCreated ? id : menus?.profileId,
       foodName: formData.get("foodName")?.toString() || "",
       accompaniment: [formData.get("accompaniment")?.toString() || ""],
       price: parseFloat(formData.get("price")?.toString() || ""),
     };
 
     let menuResponse;
-    if (id) {
-      const menuToUpdate = { ...newMenu, id: id };
+    if (!isCreated && id) {
+      const menuToUpdate = { ...newMenu, id: menus?.id ?? "" };
+
       menuResponse = await api.updateMenu(menuToUpdate);
     } else {
       menuResponse = await api.createMenu(newMenu);
@@ -84,7 +86,7 @@ export function CreateMenu() {
                   justifyContent="center"
                   fontSize="2xl"
                 >
-                  {id ? "Atualizar menu" : "Criar novo menu"}
+                  {!isCreated ? "Atualizar menu" : "Criar novo menu"}
                 </Text>
                 <Box>
                   <FormLabel>Alimento:</FormLabel>
@@ -135,7 +137,7 @@ export function CreateMenu() {
                           color="black"
                           backgroundColor="rgba(66, 153, 225, 0.6)"
                         >
-                          Editar
+                          {!isCreated ? "Editar" : "Criar"}
                         </Button>
                       </ButtonGroup>
                     </Box>
